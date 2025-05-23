@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inbox</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Grievance Inbox</h1>
+    <ul id="inbox"></ul>
+
+    <script>
+        async function loadInbox() {
+            const res = await fetch('/inbox');
+            const grievances = await res.json();
+            const list = document.getElementById('inbox');
+            list.innerHTML = '';
+            grievances.forEach(g => {
+                const li = document.createElement('li');
+                li.textContent = `[${new Date(g.timestamp).toLocaleString()}] ${g.message}`;
+                list.appendChild(li);
+            });
+        }
+        loadInbox();
+    </script>
+</body>
+</html>

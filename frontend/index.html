@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Grievance</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Submit a Grievance</h1>
+    <form id="grievanceForm">
+        <textarea id="message" placeholder="What's bothering you?"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('grievanceForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            if (!message.trim()) return alert("Please enter a message");
+            
+            await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            alert("Grievance submitted");
+            document.getElementById('message').value = '';
+        });
+    </script>
+</body>
+</html>
