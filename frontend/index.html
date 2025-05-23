@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Submit a Grievance</h1>
+    <button id="inbox-btn">Go to inbox</button>
     <form id="grievanceForm">
         <textarea id="message" placeholder="What's bothering you?"></textarea><br>
         <button type="submit">Submit</button>
@@ -25,6 +26,19 @@
 
             alert("Grievance submitted");
             document.getElementById('message').value = '';
+        });
+    </script>
+
+    <script>
+        const correctPassword = "Seoyeon";
+        document.getElementById('inbox-btn').addEventListener('click', () => {
+            const entered = prompt("Enter the password to access the inbox:");
+
+            if (entered === correctPassword) {
+                window.location.href = "/inbox.html";
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
         });
     </script>
 </body>
